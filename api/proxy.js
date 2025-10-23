@@ -70,7 +70,12 @@ export default async function handler(req, res) {
       fetchOptions.body = JSON.stringify(req.body);
     }
 
-    const upstream = await fetch(target, fetchOptions);
+    const response = await fetch("https://www.cardkingdom.com/api/cart");
+    // const data = await response.json();
+    const upstream = await fetch(
+      "https://www.cardkingdom.com/api/cart",
+      fetchOptions
+    );
     const contentType =
       upstream.headers.get("content-type") || "application/octet-stream";
 
