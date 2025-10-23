@@ -1,13 +1,8 @@
-// rateLimit.js — simple in-memory rate limiter per IP
-
-const buckets = new Map(); // key: IP, value: { count, resetTime }
+const buckets = new Map();
 
 export function checkRateLimit(ip, max, windowSec) {
   const now = Date.now();
-  const entry = buckets.get(ip) || {
-    count: 0,
-    resetTime: now + windowSec * 1000,
-  };
+  const entry = buckets.get(ip) || { count: 0, resetTime: now + windowSec * 1000 };
 
   if (now > entry.resetTime) {
     entry.count = 0;

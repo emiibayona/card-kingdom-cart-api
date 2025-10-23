@@ -1,31 +1,22 @@
 # Vercel CORS Proxy with API Key & Rate Limiting
 
-Deploy a secure CORS proxy to Vercel.
+Deploy to Vercel with:
 
-### Features
+```
+vercel deploy
+```
 
-- API Key authentication via `X-PROXY-KEY` header
-- Rate limiting per IP (configurable)
-- Host whitelist support (`ALLOWED_HOSTS`)
-
-### Environment Variables
-
+### Env vars
+```
 PROXY_API_KEY=your-secret
 ALLOWED_HOSTS=cardkingdom.com
 RATE_LIMIT_MAX=60
 RATE_LIMIT_WINDOW=60
+```
 
-### Example Usage
-
+### Example
 ```js
-fetch(
-  `/api/proxy?url=${encodeURIComponent(
-    "https://www.cardkingdom.com/api/cart"
-  )}`,
-  {
-    headers: { "X-PROXY-KEY": "your-secret" },
-  }
-)
-  .then((r) => r.json())
-  .then(console.log);
+fetch(`/api/proxy?url=${encodeURIComponent('https://www.cardkingdom.com/api/cart')}`, {
+  headers: { 'X-PROXY-KEY': 'your-secret' }
+}).then(r => r.json()).then(console.log);
 ```
